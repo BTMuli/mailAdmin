@@ -1,7 +1,15 @@
 <template>
-	<div>群发邮件界面</div>
+	<div>
+		<sidebar />
+		<div class="right_area">群发邮件界面</div>
+	</div>
 </template>
 
-<script></script>
+<script>
+	import Sidebar from '@/components/sidebar.vue';
+	export default {
+		components: { Sidebar },
+	};
+</script>
 
-<style></style>
+<style scoped></style>
