@@ -20,7 +20,7 @@
 <style scoped>
 	#navMenu {
 		width: 15vw;
-		height: 100vh;
+		height: 100%;
 		position: fixed;
 	}
 </style>

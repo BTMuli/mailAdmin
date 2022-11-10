@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<top-nav />
 		<sidebar />
 		<div class="right_area">群发邮件界面</div>
 	</div>
@@ -7,8 +8,9 @@
 
 <script>
 	import Sidebar from '@/components/sidebar.vue';
+	import TopNav from '@/components/topnav.vue';
 	export default {
-		components: { Sidebar },
+		components: { TopNav, Sidebar },
 	};
 </script>
 
