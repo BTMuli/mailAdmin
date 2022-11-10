@@ -1,5 +1,13 @@
-import { createApp } from 'vue';
-import './style.css';
-import App from './App.vue';
+import { createSSRApp } from 'vue';
+import App from '@/App.vue';
+// 引入 Element+
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
+// 引入 Vue-router
+import router from '@/router/index.js';
 
-createApp(App).mount('#app');
+const app = createSSRApp(App);
+
+app.use(ElementPlus, router);
+
+app.mount('#app');
