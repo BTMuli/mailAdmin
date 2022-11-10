@@ -4,15 +4,10 @@
 			<image src="/src/static/image/login.png" />
 		</div>
 		<div class="right_login">
-			<el-form
-				ref="loginForm"
-				title="邮件服务器管理系统"
-				class="login_form"
-				size="large"
-			>
+			<el-form ref="loginForm" class="login_form" size="large">
 				<div class="login_title">邮件系统管理员登录</div>
 				<el-form-item label="账号">
-					<el-input v-model="account" />
+					<el-input v-model="username" />
 				</el-form-item>
 				<el-form-item label="密码">
 					<el-input v-model="password" type="password" />
@@ -28,26 +23,25 @@
 </template>
 
 <script>
-	import { systemLogin } from '@/api/app.js';
+	import useAppStore from '@/store/modules/app.js';
 
 	export default {
 		data() {
 			return {
-				account: '',
+				username: '',
 				password: '',
 			};
 		},
 		methods: {
 			async webLogin() {
 				let formData = {
-					account: this.account,
+					username: this.username,
 					password: this.password,
 				};
-				console.log(formData);
-				// todo req.login
-				let postRes = await systemLogin(formData);
-				console.log(postRes);
-				if (postRes) {
+				const appStore = useAppStore();
+				let loginRes = await appStore.loginAuth(formData);
+				console.log(loginRes);
+				if (loginRes) {
 					await this.$router.replace('/home');
 				}
 			},
