@@ -15,7 +15,7 @@ export async function request(options) {
 				reqRes = res.data;
 			})
 			.catch(err => {
-				console.log(err)
+				console.log(err);
 			});
 	} else {
 		await axios
@@ -24,10 +24,10 @@ export async function request(options) {
 				method: options.method,
 			})
 			.then(async res => {
-				reqRes = res.data
+				reqRes = res.data;
 			})
 			.catch(err => {
-				console.log(err)
+				console.log(err);
 			});
 	}
 	return reqRes;

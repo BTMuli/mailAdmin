@@ -5,16 +5,18 @@ const useAppStore = defineStore('appStore', {
 	state() {
 		return {
 			token: '',
+			nickname: '',
 		};
 	},
 	actions: {
-		setToken(data) {
-			this.token = data;
+		setInfo(data) {
+			this.token = data.token;
+			this.nickname = data.nickname;
 		},
 		async loginAuth(data) {
 			let postRes = await login(data);
-			console.log('appStore.loginAuth', postRes);
-			await this.setToken(postRes.token);
+			await this.setInfo(postRes.data);
+			return this.token !== '';
 		},
 	},
 	persist: true,
