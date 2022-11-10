@@ -1,0 +1,6 @@
+# JetBrains config dir
+.idea
+# Vscode config dir
+.vscode
+# Node modules
+node_modules

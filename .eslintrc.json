@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/essential",
+    "plugin:json/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "vue",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "vue/comment-directive": "off",
+    "vue/multi-word-component-names": "off",
+    "json/*": [
+      "warn"
+    ],
+    "json/duplicate-key": "error",
+    "json/trailing-comma": "error"
+  }
+}
