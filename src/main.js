@@ -8,6 +8,6 @@ import router from '@/router/index.js';
 
 const app = createSSRApp(App);
 
-app.use(ElementPlus, router);
+app.use(router).use(ElementPlus);
 
 app.mount('#app');
