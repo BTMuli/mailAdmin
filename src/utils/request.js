@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://mock.apifox.cn/m1/1887182-0-default';
+// const BASE_URL = 'https://mock.apifox.cn/m1/1887182-0-default';
+const BASE_URL = 'http://healthcode.natapp1.cc';
 
 export async function request(options) {
 	let reqRes;
