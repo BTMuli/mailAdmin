@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { login } from '@/api/user.js';
+import { login, register } from '@/api/user.js';
 
 const useAppStore = defineStore('appStore', {
 	state() {
@@ -15,6 +15,13 @@ const useAppStore = defineStore('appStore', {
 		},
 		async loginAuth(data) {
 			let postRes = await login(data);
+			await console.log('loginAuth.postRes', postRes);
+			await this.setInfo(postRes.data);
+			return this.token !== '';
+		},
+		async registerAuth(data) {
+			let postRes = await register(data);
+			await console.log('registerAuth.postRes', postRes);
 			await this.setInfo(postRes.data);
 			return this.token !== '';
 		},

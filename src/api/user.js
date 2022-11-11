@@ -1,7 +1,6 @@
 import { request } from '@/utils/request.js';
 import useAppStore from '@/store/modules/app.js';
 
-const appStore = useAppStore();
 const USER_PATH = '/mail/user';
 
 export function login(options) {
@@ -15,7 +14,19 @@ export function login(options) {
 	});
 }
 
+export function register(options) {
+	return request({
+		method: 'post',
+		url: USER_PATH + 'register',
+		data: {
+			username: options.username,
+			password: options.password,
+		},
+	});
+}
+
 export function getUsers() {
+	const appStore = useAppStore();
 	return request({
 		method: 'get',
 		url: USER_PATH + '/all',
@@ -26,6 +37,7 @@ export function getUsers() {
 }
 
 export function disableUser(username) {
+	const appStore = useAppStore();
 	return request({
 		method: 'post',
 		url: USER_PATH + '/disable',
@@ -37,6 +49,7 @@ export function disableUser(username) {
 }
 
 export function enableUser(username) {
+	const appStore = useAppStore();
 	return request({
 		method: 'post',
 		url: USER_PATH + '/enable',
@@ -48,6 +61,7 @@ export function enableUser(username) {
 }
 
 export function deleteUser(username) {
+	const appStore = useAppStore();
 	return request({
 		method: 'post',
 		url: USER_PATH + '/delete',
@@ -59,6 +73,7 @@ export function deleteUser(username) {
 }
 
 export function createUser(options) {
+	const appStore = useAppStore();
 	return request({
 		method: 'post',
 		url: USER_PATH + '/create',
@@ -70,7 +85,9 @@ export function createUser(options) {
 	});
 }
 
+// todo 群发是发所有用户还是选中的部分用户?
 export function groupSend(options) {
+	const appStore = useAppStore();
 	return request({
 		method: 'get',
 		uel: USER_PATH + '/group',
