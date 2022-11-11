@@ -14,12 +14,14 @@ const useAppStore = defineStore('appStore', {
 			this.nickname = data.nickname;
 		},
 		async loginAuth(data) {
+			await console.log('loginAuth.data', data);
 			let postRes = await login(data);
 			await console.log('loginAuth.postRes', postRes);
 			await this.setInfo(postRes.data);
 			return this.token !== '';
 		},
 		async registerAuth(data) {
+			await console.log('registerAuth.data', data);
 			let postRes = await register(data);
 			await console.log('registerAuth.postRes', postRes);
 			await this.setInfo(postRes.data);
