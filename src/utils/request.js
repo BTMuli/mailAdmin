@@ -6,8 +6,6 @@ const BASE_URL = 'http://healthcode.natapp1.cc';
 
 // reqRes = { type, message, content };
 
-axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-
 export async function request(options) {
 	await console.log('request.options', options);
 	if (options.method === 'get') {
@@ -18,11 +16,14 @@ export async function request(options) {
 
 	async function reqGet(options) {
 		let getRes;
-		await axios({
-			url: BASE_URL + options.url,
-			method: 'get',
-			params: options.data,
-		})
+		await axios(
+			{
+				url: BASE_URL + options.url,
+				method: 'get',
+				params: options.data,
+			},
+			{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+		)
 			.then(async res => {
 				await console.log('request.reqGet.res', res);
 				getRes = res.data;
@@ -36,11 +37,14 @@ export async function request(options) {
 
 	async function reqPost(options) {
 		let postRes;
-		await axios({
-			url: BASE_URL + options.url,
-			method: 'post',
-			data: qs.stringify(options.data),
-		})
+		await axios(
+			{
+				url: BASE_URL + options.url,
+				method: 'post',
+				data: qs.stringify(options.data),
+			},
+			{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+		)
 			.then(async res => {
 				await console.log('request.reqPost.res', res);
 				postRes = res.data;

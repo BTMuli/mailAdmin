@@ -18,24 +18,30 @@ const useUserStore = defineStore('userStore', {
 		setUsers(data) {
 			this.userList = data;
 		},
-		async getUsersInfo() {
+		getUsersInfo() {
+			return this.userList;
+		},
+		async flushUsersInfo() {
+			console.log('getUsersInfo');
 			let getRes = await getUsers();
-			await console.log(getRes.data);
-			await this.setUsers(getRes.data);
+			console.log('getUsersInfo.getRes.users', getRes.users);
+			await this.setUsers(getRes.users);
+			console.log('userStore.userList', this.userList);
 		},
 		async transferUser(operaType, username) {
+			console.log('transferUser.data', operaType, username);
 			if (operaType === 'enable') {
 				let postRes = await enableUser(username);
-				await console.log(postRes);
+				await console.log('transferUser.enableUser.postRes', postRes);
 			} else if (operaType === 'disable') {
 				let postRes = await disableUser(username);
-				await console.log(postRes);
+				await console.log('transferUser.disableUser.postRes', postRes);
 			} else if (operaType === 'delete') {
 				let postRes = await deleteUser(username);
-				await console.log(postRes);
+				await console.log('transferUser.deleteUser.postRes', postRes);
 			} else {
 				let postRes = 'userStore.transferUser';
-				await console.log(postRes);
+				await console.log('transferUser.default.postRes', postRes);
 			}
 		},
 		async createUser(data) {
