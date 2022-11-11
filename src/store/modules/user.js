@@ -31,17 +31,17 @@ const useUserStore = defineStore('userStore', {
 		async transferUser(operaType, username) {
 			console.log('transferUser.data', operaType, username);
 			if (operaType === 'enable') {
-				let postRes = await enableUser(username);
-				await console.log('transferUser.enableUser.postRes', postRes);
+				let reqRes = await enableUser(username);
+				await console.log('transferUser.enableUser.reqRes', reqRes);
 			} else if (operaType === 'disable') {
-				let postRes = await disableUser(username);
-				await console.log('transferUser.disableUser.postRes', postRes);
+				let reqRes = await disableUser(username);
+				await console.log('transferUser.disableUser.reqRes', reqRes);
 			} else if (operaType === 'delete') {
-				let postRes = await deleteUser(username);
-				await console.log('transferUser.deleteUser.postRes', postRes);
+				let reqRes = await deleteUser(username);
+				await console.log('transferUser.deleteUser.reqRes', reqRes);
 			} else {
-				let postRes = 'userStore.transferUser';
-				await console.log('transferUser.default.postRes', postRes);
+				let reqRes = 'userStore.transferUser';
+				await console.log('transferUser.default.reqRes', reqRes);
 			}
 		},
 		async createUser(data) {

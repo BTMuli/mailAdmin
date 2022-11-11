@@ -76,7 +76,7 @@ export function enableUser(username) {
 export function deleteUser(username) {
 	const appStore = useAppStore();
 	return request({
-		method: 'post',
+		method: 'delete',
 		url: USER_PATH + '/delete',
 		data: {
 			token: appStore.token,

@@ -10,8 +10,10 @@ export async function request(options) {
 	await console.log('request.options', options);
 	if (options.method === 'get') {
 		return reqGet(options);
-	} else {
+	} else if (options.method === 'post') {
 		return reqPost(options);
+	} else if (options.method === 'delete') {
+		return reqDel(options);
 	}
 
 	async function reqGet(options) {
@@ -54,5 +56,28 @@ export async function request(options) {
 			});
 		await console.log('request.reqPost.postRes', postRes);
 		return postRes.data;
+	}
+
+	async function reqDel(options) {
+		let delRes;
+		await axios(
+			{
+				url: BASE_URL + options.url,
+				method: 'delete',
+				params: options.data,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+			}
+		)
+			.then(async res => {
+				await console.log('request.reqDel.res', res);
+				delRes = res.data;
+			})
+			.catch(async err => {
+				await console.log(err);
+			});
+		await console.log('request.reqDel.delRes', delRes);
+		return delRes.data;
 	}
 }
