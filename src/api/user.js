@@ -17,7 +17,7 @@ export function login(options) {
 export function register(options) {
 	return request({
 		method: 'post',
-		url: USER_PATH + 'register',
+		url: USER_PATH + '/register',
 		data: {
 			username: options.username,
 			password: options.password,

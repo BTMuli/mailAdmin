@@ -6,8 +6,8 @@
 		<div class="right_login">
 			<el-form ref="loginForm" class="login_form" size="large">
 				<div class="login_title">邮件系统管理员登录</div>
-				<el-form-item label="账号">
-					<el-input v-model="username" />
+				<el-form-item label="邮箱">
+					<el-input v-model="mail" />
 				</el-form-item>
 				<el-form-item label="密码">
 					<el-input v-model="password" type="password" />
@@ -28,20 +28,21 @@
 	export default {
 		data() {
 			return {
-				username: '',
+				mail: '',
 				password: '',
 			};
 		},
 		methods: {
 			async webLogin() {
 				let formData = {
-					username: this.username,
+					username: this.mail,
 					password: this.password,
 				};
+				console.log('Login.Vue.formData', formData);
 				const appStore = useAppStore();
 				let loginRes = await appStore.loginAuth(formData);
-				console.log(loginRes);
-				if (loginRes) {
+				console.log('Login.Vue.loginRes', loginRes);
+				if (loginRes === true) {
 					await this.$router.replace('/home');
 				}
 			},

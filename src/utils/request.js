@@ -14,15 +14,15 @@ export async function request(options) {
 	await axios({
 		url: BASE_URL + options.url,
 		method: options.method,
-		data: qs.stringify(options.data)
+		data: qs.stringify(options.data),
 	})
-	.then(async res => {
-		await console.log('request.res', res);
-		reqRes = res.data;
-	})
-	.catch(async err => {
-		await console.log(err);
-	});
+		.then(async res => {
+			await console.log('request.res', res);
+			reqRes = res.data;
+		})
+		.catch(async err => {
+			await console.log(err);
+		});
 	await console.log('request.reqRes', reqRes);
 	return reqRes.data;
 }
