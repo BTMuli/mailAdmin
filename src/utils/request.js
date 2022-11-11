@@ -10,19 +10,45 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export async function request(options) {
 	await console.log('request.options', options);
-	let reqRes;
-	await axios({
-		url: BASE_URL + options.url,
-		method: options.method,
-		data: qs.stringify(options.data),
-	})
-		.then(async res => {
-			await console.log('request.res', res);
-			reqRes = res.data;
+	if (options.method === 'get') {
+		return reqGet(options);
+	} else {
+		return reqPost(options);
+	}
+
+	async function reqGet(options) {
+		let getRes;
+		await axios({
+			url: BASE_URL + options.url,
+			method: 'get',
+			params: options.data,
 		})
-		.catch(async err => {
-			await console.log(err);
-		});
-	await console.log('request.reqRes', reqRes);
-	return reqRes.data;
+			.then(async res => {
+				await console.log('request.reqGet.res', res);
+				getRes = res.data;
+			})
+			.catch(async err => {
+				await console.log(err);
+			});
+		await console.log('request.reqGet.getRes', getRes);
+		return getRes.data;
+	}
+
+	async function reqPost(options) {
+		let postRes;
+		await axios({
+			url: BASE_URL + options.url,
+			method: 'post',
+			data: qs.stringify(options.data),
+		})
+			.then(async res => {
+				await console.log('request.reqPost.res', res);
+				postRes = res.data;
+			})
+			.catch(async err => {
+				await console.log(err);
+			});
+		await console.log('request.reqPost.postRes', postRes);
+		return postRes.data;
+	}
 }
