@@ -1,7 +1,9 @@
 <template>
-	<top-nav />
-	<sidebar />
-	<div>首页</div>
+	<div>
+		<top-nav />
+		<sidebar />
+		<div>首页</div>
+	</div>
 </template>
 
 <script>

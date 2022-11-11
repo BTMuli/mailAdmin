@@ -2,7 +2,9 @@
 	<div>
 		<top-nav />
 		<sidebar />
-		<div class="right_area">服务管理界面</div>
+		<div class="right_container">
+			<div>服务管理界面</div>
+		</div>
 	</div>
 </template>
 

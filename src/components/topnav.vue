@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="nav_top">
+		<div class="top_bar">
 			<div class="nav_left">
 				<!-- todo 纸飞机图标 -->
 				<image src="svg/plane.svg" />
@@ -21,12 +21,6 @@
 </script>
 
 <style scoped>
-	.nav_top {
-		width: 100%;
-		height: 80px;
-		border-bottom: 1px solid black;
-	}
-
 	.nav_left {
 		position: fixed;
 	}

@@ -2,7 +2,9 @@
 	<div>
 		<top-nav />
 		<sidebar />
-		<div class="right_area">日志管理界面</div>
+		<div class="right_container">
+			<div>日志管理界面</div>
+		</div>
 	</div>
 </template>
 
