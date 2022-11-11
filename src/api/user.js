@@ -20,7 +20,20 @@ export function register(options) {
 		url: USER_PATH + '/register',
 		data: {
 			username: options.username,
+			nickname: options.nickname,
 			password: options.password,
+		},
+	});
+}
+
+export function updateInfo(nickname) {
+	const appStore = useAppStore();
+	return request({
+		method: 'post',
+		url: USER_PATH + '/update',
+		data: {
+			nickname: nickname,
+			token: appStore.token,
 		},
 	});
 }

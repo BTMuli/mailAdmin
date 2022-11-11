@@ -6,8 +6,11 @@
 		<div class="right_register">
 			<el-form ref="registerForm" class="register_form" size="large">
 				<div class="register_title">邮件系统管理员注册</div>
-				<el-form-item label="账号">
-					<el-input v-model="username" />
+				<el-form-item label="昵称">
+					<el-input v-model="nickname" />
+				</el-form-item>
+				<el-form-item label="邮箱">
+					<el-input v-model="mail" />
 				</el-form-item>
 				<el-form-item label="密码">
 					<el-input v-model="password" type="password" />
@@ -28,22 +31,25 @@
 	export default {
 		data() {
 			return {
-				username: '',
+				mail: '',
 				password: '',
+				nickname: '',
 			};
 		},
 		methods: {
 			async webRegister() {
 				let formData = {
-					username: this.username,
+					username: this.mail,
+					nickname: this.nickname,
 					password: this.password,
 				};
-				console.log('Register.Vue.formData', formData);
+				await console.log('Register.Vue.formData', formData);
 				const appStore = useAppStore();
 				let registerRes = await appStore.registerAuth(formData);
-				console.log(registerRes);
+				await console.log('Register.Vue.registerRes', registerRes);
+				// todo 加个跳转弹窗
 				if (registerRes) {
-					await this.$router.replace('/home');
+					await this.$router.replace('/login');
 				}
 			},
 		},
