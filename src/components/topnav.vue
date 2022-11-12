@@ -2,8 +2,7 @@
 	<div>
 		<div class="top_bar">
 			<div class="nav_left">
-				<!-- todo 纸飞机图标 -->
-				<image src="svg/plane.svg" />
+				<img src="/src/static/svg/plane.svg" alt="纸飞机图标" />
 				<text>邮件系统</text>
 			</div>
 			<div class="nav_right">一堆图标</div>

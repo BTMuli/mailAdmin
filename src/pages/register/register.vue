@@ -1,8 +1,6 @@
 <template>
 	<view>
-		<div class="left_bg">
-			<image src="/src/static/image/login.png" />
-		</div>
+		<div class="left_bg" />
 		<div class="right_register">
 			<el-form ref="registerForm" class="register_form" size="large">
 				<div class="register_title">邮件系统管理员注册</div>
@@ -57,15 +55,9 @@
 </script>
 
 <style scoped>
-	.left_bg {
-		width: 50vw;
-		height: 100vh;
-		position: fixed;
-	}
-
 	.right_register {
 		width: 50vw;
-		height: 100vh;
+		height: 100%;
 		float: right;
 		text-align: center;
 	}

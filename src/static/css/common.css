@@ -1,3 +1,11 @@
+/* 登录注册左侧背景 */
+.left_bg {
+    width: 50vw;
+    height: 100%;
+    position: fixed;
+    background-image: url("src/static/image/login.png");
+}
+
 /* 左侧导航栏布局 */
 .left_bar {
     width: 15vw;

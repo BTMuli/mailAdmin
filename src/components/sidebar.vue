@@ -12,7 +12,9 @@
 <script>
 	export default {
 		name: 'sidebar',
-		data() {},
+		data() {
+			return {};
+		},
 		methods: {},
 	};
 </script>
