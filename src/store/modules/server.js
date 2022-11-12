@@ -22,6 +22,14 @@ const useServerStore = defineStore('serverStore', {
 		};
 	},
 	actions: {
+		getServerInfo(server) {
+			console.log('getServerInfo.server', server);
+			if (server === 'smtp') {
+				return this.smtpServer;
+			} else if (server === 'pop3') {
+				return this.pop3Server;
+			}
+		},
 		async setServerInfo(server, status, port) {
 			await console.log(
 				'setServerInfo[server,status,port]',
@@ -37,12 +45,12 @@ const useServerStore = defineStore('serverStore', {
 				this.pop3Server.port = port;
 			}
 		},
-		async getServerInfo(server) {
-			await console.log('getServerInfo.server', server);
+		async flushServerInfo(server) {
+			await console.log('flushServerInfo.server', server);
 			let resStatus = await getStatus(server);
-			await console.log('getSmtpInfo.resStatus', resStatus);
+			await console.log('flushServerInfo.resStatus', resStatus);
 			let resPort = await getPort(server);
-			await console.log('getSmtpInfo.resPort', resPort);
+			await console.log('flushServerInfo.resPort', resPort);
 			await this.setServerInfo(server, resStatus, resPort);
 		},
 		// target start|stop|port
