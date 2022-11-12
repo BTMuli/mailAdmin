@@ -60,16 +60,14 @@ export async function request(options) {
 
 	async function reqDel(options) {
 		let delRes;
-		await axios(
-			{
-				url: BASE_URL + options.url,
-				method: 'delete',
-				params: options.data,
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-			}
-		)
+		await axios({
+			url: BASE_URL + options.url,
+			method: 'delete',
+			params: options.data,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+		})
 			.then(async res => {
 				await console.log('request.reqDel.res', res);
 				delRes = res.data;
