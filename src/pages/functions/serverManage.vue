@@ -3,6 +3,7 @@
 		<top-nav />
 		<sidebar />
 		<div class="right_container">
+			<!-- todo 样式采用描述列表 https://element-plus.org/zh-CN/component/descriptions.html -->
 			<div>服务管理界面</div>
 			<div>
 				<div>STMP</div>
