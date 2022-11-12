@@ -23,18 +23,18 @@ const routes = [
 	},
 	{
 		path: '/log',
-		name: 'managerLog',
-		component: () => import('@/pages/functions/managerLog.vue'),
+		name: 'logManage',
+		component: () => import('@/pages/functions/logManage.vue'),
 	},
 	{
 		path: '/server',
-		name: 'serverManager',
-		component: () => import('@/pages/functions/serverManager.vue'),
+		name: 'serverManage',
+		component: () => import('@/pages/functions/serverManage.vue'),
 	},
 	{
 		path: '/user',
-		name: 'userManager',
-		component: () => import('@/pages/functions/userManager.vue'),
+		name: 'userManage',
+		component: () => import('@/pages/functions/userManage.vue'),
 	},
 ];
 

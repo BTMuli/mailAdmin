@@ -47,7 +47,7 @@
 			getUsersInfo() {
 				const userStore = useUserStore();
 				console.log(
-					'userManager.getUsersInfo.userStore.getUsersInfo',
+					'userManage.getUsersInfo.userStore.getUsersInfo',
 					userStore.userList
 				);
 				return userStore.getUsersInfo();
@@ -55,22 +55,22 @@
 			async flushUsersInfo() {
 				const userStore = useUserStore();
 				await console.log(
-					'userManager.flushUsersInfo.userStore.flushUsersInfo'
+					'userManage.flushUsersInfo.userStore.flushUsersInfo'
 				);
 				await userStore.flushUsersInfo();
 			},
 			async disableUser(username) {
-				await console.log('userManager.disableUser.username', username);
+				await console.log('userManage.disableUser.username', username);
 				const userStore = useUserStore();
 				await userStore.transferUser('disable', username);
 			},
 			async enableUser(username) {
-				await console.log('userManager.disableUser.username', username);
+				await console.log('userManage.enableUser.username', username);
 				const userStore = useUserStore();
 				await userStore.transferUser('enable', username);
 			},
 			async deleteUser(username) {
-				await console.log('userManager.disableUser.username', username);
+				await console.log('userManage.deleteUser.username', username);
 				const userStore = useUserStore();
 				await userStore.transferUser('delete', username);
 			},

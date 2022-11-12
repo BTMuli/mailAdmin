@@ -59,20 +59,20 @@
 		methods: {
 			getWebServer(server) {
 				const serverStore = useServerStore();
-				console.log('serverManager.Vue.getWebServer.server', server);
+				console.log('serverManage.Vue.getWebServer.server', server);
 				let serverRes = serverStore.getServerInfo(server);
 				console.log(
-					'serverManager.Vue.getWebServer.serverRes',
+					'serverManage.Vue.getWebServer.serverRes',
 					serverRes
 				);
 				return serverRes;
 			},
 			flushWebServer(server) {
 				const serverStore = useServerStore();
-				console.log('serverManager.Vue.flushWebServer.server', server);
+				console.log('serverManage.Vue.flushWebServer.server', server);
 				let serverRes = serverStore.flushServerInfo(server);
 				console.log(
-					'serverManager.Vue.flushWebServer.serverRes',
+					'serverManage.Vue.flushWebServer.serverRes',
 					serverRes
 				);
 				return serverRes;
@@ -80,13 +80,13 @@
 			changeWebServer(server, target) {
 				const serverStore = useServerStore();
 				console.log(
-					'serverManager.Vue.changeWebServer[server,target]',
+					'serverManage.Vue.changeWebServer[server,target]',
 					server,
 					target
 				);
 				let serverRes = serverStore.changeServer(server, target);
 				console.log(
-					'serverManager.Vue.changeWebServer.serverRes',
+					'serverManage.Vue.changeWebServer.serverRes',
 					serverRes
 				);
 				return serverRes;
