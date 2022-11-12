@@ -1,12 +1,45 @@
 import { request } from '@/utils/request.js';
 import useAppStore from '@/store/modules/app.js';
 
-const appStore = useAppStore();
-
 const SMTP_PATH = '/mail/smtp';
 const POP_PATH = '/mail/pop3';
 
+export function getStatus(server) {
+	const appStore = useAppStore();
+	if (server === 'smtp') {
+		return request({
+			method: 'get',
+			url: SMTP_PATH + '/status',
+			data: appStore.token,
+		});
+	} else if (server === 'pop3') {
+		return request({
+			method: 'get',
+			url: POP_PATH + '/status',
+			data: appStore.token,
+		});
+	}
+}
+
+export function getPort(server) {
+	const appStore = useAppStore();
+	if (server === 'smtp') {
+		return request({
+			method: 'get',
+			url: SMTP_PATH + '/port',
+			data: appStore.token,
+		});
+	} else if (server === 'pop3') {
+		return request({
+			method: 'get',
+			url: POP_PATH + '/port',
+			data: appStore.token,
+		});
+	}
+}
+
 export function startServer(server) {
+	const appStore = useAppStore();
 	if (server === 'smtp') {
 		return request({
 			method: 'get',
@@ -23,6 +56,7 @@ export function startServer(server) {
 }
 
 export function stopServer(server) {
+	const appStore = useAppStore();
 	if (server === 'smtp') {
 		return request({
 			method: 'get',
@@ -39,6 +73,7 @@ export function stopServer(server) {
 }
 
 export function portChange(server, port) {
+	const appStore = useAppStore();
 	if (server === 'smtp') {
 		return request({
 			method: 'post',
