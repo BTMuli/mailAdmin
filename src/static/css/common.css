@@ -6,18 +6,6 @@
     background-image: url("src/static/image/login.png");
 }
 
-/* 左侧导航栏布局 */
-.left_bar {
-    width: 100%;
-    height: 100%;
-}
-
-/* 顶部边栏布局 */
-.top_bar {
-    width: 100%;
-    height: 80px;
-}
-
 /* 右侧容器视图 */
 .right_container {
     width: 100%;
