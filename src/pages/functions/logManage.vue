@@ -12,14 +12,17 @@
 <script>
 	import Sidebar from '@/components/sidebar.vue';
 	import TopNav from '@/components/topnav.vue';
-	import useAppStore from '@/store/modules/app.js';
+	import { BASE_URL } from '@/utils/request.js';
 	export default {
 		components: { TopNav, Sidebar },
+		data() {
+			return {
+				logUrl: BASE_URL + '/mail/log/get',
+			};
+		},
 		methods: {
-			async getWebLog() {
-				const appStore = useAppStore();
-				await console.log('logManage.Vue.getWebLog');
-				await appStore.getLog();
+			getWebLog() {
+				window.open(this.logUrl);
 			},
 		},
 	};

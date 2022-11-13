@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 // const BASE_URL = 'https://mock.apifox.cn/m1/1887182-0-default';
-const BASE_URL = 'http://healthcode.natapp1.cc';
+export const BASE_URL = 'http://healthcode.natapp1.cc';
 
 // reqRes = { type, message, content };
 

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { login, register, updateInfo } from '@/api/user.js';
-import { getLogInfo } from '@/api/log.js';
 
 const useAppStore = defineStore('appStore', {
 	state() {
@@ -48,12 +47,6 @@ const useAppStore = defineStore('appStore', {
 			await console.log('updateInfo.postRes', postRes);
 			await this.setNickName(nickname);
 			return true;
-		},
-		async getLog() {
-			await console.log('getLog');
-			let getRes = await getLogInfo();
-			await console.log('getLog.getRes', getRes);
-			return getRes;
 		},
 	},
 	persist: true,
