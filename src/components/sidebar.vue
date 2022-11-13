@@ -33,7 +33,7 @@
 	}
 
 	.el_menu {
-		width: 200px;
+		width: 100%;
 		height: 100%;
 		border-right: 1px solid #e4e7ed;
 	}

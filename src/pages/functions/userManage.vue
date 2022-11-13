@@ -1,43 +1,30 @@
 <template>
 	<div>
-		<top-nav />
-		<sidebar />
-		<div class="right_container">
-			<div>用户管理界面</div>
-			<button @click="flushUsersInfo()">获取用户数据</button>
-			<div>
-				<div v-for="user in usersInfo">
-					<ul>
-						<li>authority：{{ user.authority }}</li>
-						<li>avatarURL：{{ user.avatarURL }}</li>
-						<li>createDate：{{ user.createDate }}</li>
-						<li>id：{{ user.id }}</li>
-						<li>nickname：{{ user.nickname }}</li>
-						<li>password：{{ user.password }}</li>
-						<li>phoneNumber：{{ user.phoneNumber }}</li>
-						<li>username：{{ user.username }}</li>
-					</ul>
-					<button @click="disableUser(user.username)">
-						disableUser
-					</button>
-					<button @click="enableUser(user.username)">
-						enableUser
-					</button>
-					<button @click="deleteUser(user.username)">
-						deleteUser
-					</button>
-				</div>
+		<div>用户管理界面</div>
+		<button @click="flushUsersInfo()">获取用户数据</button>
+		<div>
+			<div v-for="user in usersInfo">
+				<ul>
+					<li>authority：{{ user.authority }}</li>
+					<li>avatarURL：{{ user.avatarURL }}</li>
+					<li>createDate：{{ user.createDate }}</li>
+					<li>id：{{ user.id }}</li>
+					<li>nickname：{{ user.nickname }}</li>
+					<li>password：{{ user.password }}</li>
+					<li>phoneNumber：{{ user.phoneNumber }}</li>
+					<li>username：{{ user.username }}</li>
+				</ul>
+				<button @click="disableUser(user.username)">disableUser</button>
+				<button @click="enableUser(user.username)">enableUser</button>
+				<button @click="deleteUser(user.username)">deleteUser</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Sidebar from '@/components/sidebar.vue';
-	import TopNav from '@/components/topnav.vue';
 	import useUserStore from '@/store/modules/user.js';
 	export default {
-		components: { TopNav, Sidebar },
 		data() {
 			return {
 				usersInfo: this.getUsersInfo(),
