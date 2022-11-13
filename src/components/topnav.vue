@@ -5,6 +5,7 @@
 			<div class="title">邮件系统</div>
 		</div>
 		<div class="nav_right">
+      <el-card shadow="hover" @click="updateInfo()" class="right_card">{{ username }}</el-card>
 			<img src="/src/static/svg/bell-ring.svg" alt="通知" />
 			<!-- todo click 事件 -->
 			<img src="/src/static/svg/apps.svg" alt="功能" />
@@ -14,7 +15,6 @@
 				alt="用户"
 				@click="updateInfo()"
 			/>
-			{{ username }}
 		</div>
 	</div>
 </template>
@@ -39,10 +39,9 @@
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 				})
-					.then(({ value }) => {
+					.then(async ({ value }) => {
 						const appStore = useAppStore();
-						appStore.updateInfo(value);
-						this.username = value;
+						await appStore.updateInfo(value);
 						this.$message({
 							type: 'success',
 							message: '修改成功!',
@@ -97,4 +96,12 @@
 		height: 40px;
 		padding: 5px;
 	}
+
+
+  .right_card {
+    display: inline-block;
+    height: 40px;
+    width: auto;
+    right: 40px;
+  }
 </style>
