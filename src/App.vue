@@ -19,8 +19,10 @@
 				</el-aside>
 				<!-- 主体内容 -->
 				<el-main class="right_container">
+          <div class="right_main">
 					<!-- 路由视图 -->
 					<router-view />
+          </div>
 				</el-main>
 			</el-container>
 		</el-container>
