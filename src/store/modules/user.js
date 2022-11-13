@@ -8,19 +8,33 @@ import {
 	groupSend,
 } from '@/api/user.js';
 
+// The store to manage the user
 const useUserStore = defineStore('userStore', {
 	state() {
 		return {
+			// The user list
 			userList: [],
 		};
 	},
 	actions: {
+		/**
+		 * @description: Set user list
+		 * @param data
+		 */
 		setUsers(data) {
 			this.userList = data;
 		},
+		/**
+		 * @description: Get user list
+		 * @return []
+		 */
 		getUsersInfo() {
 			return this.userList;
 		},
+		/**
+		 * @description: Flush user list
+		 * @return {Promise<void>}
+		 */
 		async flushUsersInfo() {
 			console.log('getUsersInfo');
 			let getRes = await getUsers();
@@ -28,6 +42,12 @@ const useUserStore = defineStore('userStore', {
 			await this.setUsers(getRes.users);
 			console.log('userStore.userList', this.userList);
 		},
+		/**
+		 * @description: Transfer user includes delete, disable, enable
+		 * @param operaType delete || disable || enable
+		 * @param username user's username
+		 * @return {Promise<void>} user info
+		 */
 		async transferUser(operaType, username) {
 			console.log('transferUser.data', operaType, username);
 			if (operaType === 'enable') {
@@ -44,6 +64,12 @@ const useUserStore = defineStore('userStore', {
 				await console.log('transferUser.default.reqRes', reqRes);
 			}
 		},
+		/**
+		 * @description: Create user
+		 * @param data user's info
+		 * @return {Promise<void>} user info
+		 * @todo need to verify the function
+		 */
 		async createUser(data) {
 			let sendMsg = {
 				username: data.username,
@@ -52,6 +78,12 @@ const useUserStore = defineStore('userStore', {
 			let getRes = await createUser(sendMsg);
 			await console.log(getRes);
 		},
+		/**
+		 * @description: Group send message
+		 * @param data message's info
+		 * @return {Promise<void>} message info
+		 * @todo need to verify the function
+		 */
 		async sendGroupMail(data) {
 			let sendMsg = {
 				users: data.users,

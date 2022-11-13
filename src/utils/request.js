@@ -1,11 +1,15 @@
 import axios from 'axios';
 import qs from 'qs';
 
-// const BASE_URL = 'https://mock.apifox.cn/m1/1887182-0-default';
+// Base URL
+// export const baseURL = 'http://localhost:3000';
 export const BASE_URL = 'http://healthcode.natapp1.cc';
 
-// reqRes = { type, message, content };
-
+/**
+ * @description: Request by axios
+ * @param options method, url, data
+ * @return {Promise<*>} response
+ */
 export async function request(options) {
 	await console.log('request.options', options);
 	if (options.method === 'get') {
@@ -16,6 +20,11 @@ export async function request(options) {
 		return reqDel(options);
 	}
 
+	/**
+	 * @description: Get request
+	 * @param options url, data
+	 * @return {Promise<*>} response
+	 */
 	async function reqGet(options) {
 		let getRes;
 		await axios(
@@ -37,6 +46,11 @@ export async function request(options) {
 		return getRes.data;
 	}
 
+	/**
+	 * @description: Post request
+	 * @param options url, data
+	 * @return {Promise<*>} response
+	 */
 	async function reqPost(options) {
 		let postRes;
 		await axios(
@@ -58,6 +72,11 @@ export async function request(options) {
 		return postRes.data;
 	}
 
+	/**
+	 * @description: Delete request
+	 * @param options url, data
+	 * @return {Promise<*>} response
+	 */
 	async function reqDel(options) {
 		let delRes;
 		await axios({

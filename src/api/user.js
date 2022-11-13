@@ -1,8 +1,14 @@
 import { request } from '@/utils/request.js';
 import useAppStore from '@/store/modules/app.js';
 
+// User api paths
 const USER_PATH = '/mail/user';
 
+/**
+ * @description: Login
+ * @param options  username, password
+ * @return {Promise<*|undefined>} user info
+ */
 export function login(options) {
 	return request({
 		method: 'post',
@@ -14,6 +20,11 @@ export function login(options) {
 	});
 }
 
+/**
+ * @description: Register
+ * @param options username, nickname, password
+ * @return {Promise<*|undefined>} user info
+ */
 export function register(options) {
 	return request({
 		method: 'post',
@@ -26,6 +37,11 @@ export function register(options) {
 	});
 }
 
+/**
+ * @description: Update user's nickname
+ * @param nickname new nickname
+ * @return {Promise<*|undefined>} user info
+ */
 export function updateInfo(nickname) {
 	const appStore = useAppStore();
 	return request({
@@ -38,6 +54,10 @@ export function updateInfo(nickname) {
 	});
 }
 
+/**
+ * @description: Get users' info
+ * @return {Promise<*|undefined>} users' info
+ */
 export function getUsers() {
 	const appStore = useAppStore();
 	return request({
@@ -49,6 +69,11 @@ export function getUsers() {
 	});
 }
 
+/**
+ * @description: Disable user
+ * @param username user's username
+ * @return {Promise<*|undefined>} user info
+ */
 export function disableUser(username) {
 	const appStore = useAppStore();
 	return request({
@@ -61,6 +86,11 @@ export function disableUser(username) {
 	});
 }
 
+/**
+ * @description: Enable user
+ * @param username user's username
+ * @return {Promise<*|undefined>} user info
+ */
 export function enableUser(username) {
 	const appStore = useAppStore();
 	return request({
@@ -73,6 +103,11 @@ export function enableUser(username) {
 	});
 }
 
+/**
+ * @description: Delete user
+ * @param username user's username
+ * @return {Promise<*|undefined>} user info
+ */
 export function deleteUser(username) {
 	const appStore = useAppStore();
 	return request({
@@ -85,6 +120,12 @@ export function deleteUser(username) {
 	});
 }
 
+/**
+ * @description: Create user
+ * @param options username, password
+ * @return {Promise<*|undefined>} user info
+ * @todo: add nickname
+ */
 export function createUser(options) {
 	const appStore = useAppStore();
 	return request({
@@ -98,7 +139,12 @@ export function createUser(options) {
 	});
 }
 
-// todo 群发是发所有用户还是选中的部分用户?
+/**
+ * @description: Send email for selected user
+ * @param options username, title, content
+ * @return {Promise<*|undefined>} user info
+ * @todo: need to verify
+ */
 export function groupSend(options) {
 	const appStore = useAppStore();
 	return request({

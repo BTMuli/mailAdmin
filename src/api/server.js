@@ -1,9 +1,15 @@
 import { request } from '@/utils/request.js';
 import useAppStore from '@/store/modules/app.js';
 
+// Server api paths
 const SMTP_PATH = '/mail/smtp';
 const POP_PATH = '/mail/pop3';
 
+/**
+ * @description: Get SMTP && POP3 server status
+ * @param server smtp || pop3
+ * @return {Promise<*|undefined>} server status
+ */
 export function getStatus(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
@@ -21,6 +27,11 @@ export function getStatus(server) {
 	}
 }
 
+/**
+ * @description: Get SMTP && POP3 server port
+ * @param server smtp || pop3
+ * @return {Promise<*|undefined>} server port
+ */
 export function getPort(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
@@ -38,6 +49,11 @@ export function getPort(server) {
 	}
 }
 
+/**
+ * @description: Start SMTP && POP3 server
+ * @param server smtp || pop3
+ * @return {Promise<*|undefined>} server status
+ */
 export function startServer(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
@@ -55,6 +71,11 @@ export function startServer(server) {
 	}
 }
 
+/**
+ * @description: Stop SMTP && POP3 server
+ * @param server smtp || pop3
+ * @return {Promise<*|undefined>} server status
+ */
 export function stopServer(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
@@ -72,6 +93,12 @@ export function stopServer(server) {
 	}
 }
 
+/**
+ * @description: Change SMTP && POP3 server port
+ * @param server smtp || pop3
+ * @param port new port
+ * @return {Promise<*|undefined>} server status
+ */
 export function portChange(server, port) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
