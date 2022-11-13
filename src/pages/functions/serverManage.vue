@@ -121,4 +121,14 @@
 	};
 </script>
 
-<style scoped></style>
+<style scoped>
+	.top_title {
+		height: 50px;
+		padding: 10px;
+		text-align: left;
+		font-size: 30px;
+		font-weight: normal;
+		margin-top: 10px;
+		display: inline-block;
+	}
+</style>
