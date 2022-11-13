@@ -1,31 +1,43 @@
 <template>
 	<div>
-		<!-- todo 样式采用描述列表 https://element-plus.org/zh-CN/component/descriptions.html -->
-		<div>服务管理界面</div>
-		<div>
-			<div>STMP</div>
-			<div>运行状态: {{ getWebServer('smtp').status }}</div>
-			<div>运行端口: {{ getWebServer('smtp').port }}</div>
-			<input v-model="readPort.smtp" placeholder="输入端口号" />
-			<button @click="flushWebServer('smtp')">刷新</button>
-			<button @click="changeWebServer('smtp', 'start')">启动服务</button>
-			<button @click="changeWebServer('smtp', 'stop')">关闭服务</button>
-			<button @click="changeWebServer('smtp', this.readPort.smtp)">
-				更改端口至 {{ readPort.smtp }}
-			</button>
-		</div>
-		<div>
-			<div>POP3</div>
-			<div>运行状态: {{ getWebServer('pop3').status }}</div>
-			<div>运行端口: {{ getWebServer('pop3').port }}</div>
-			<input v-model="readPort.pop3" placeholder="输入端口号" />
-			<button @click="flushWebServer('pop3')">刷新</button>
-			<button @click="changeWebServer('pop3', 'start')">启动服务</button>
-			<button @click="changeWebServer('pop3', 'stop')">关闭服务</button>
-			<button @click="changeWebServer('pop3', this.readPort.smtp)">
-				更改端口至 {{ readPort.pop3 }}
-			</button>
-		</div>
+		<div class="top_title">服务管理界面</div>
+		<el-table :data="serverInfo" border>
+			<el-table-column prop="name" label="服务名称"></el-table-column>
+			<el-table-column prop="port" label="端口"></el-table-column>
+			<el-table-column prop="status" label="服务状态"></el-table-column>
+			<el-table-column label="操作">
+				<template #default="scope">
+					<el-button
+						size="small"
+						type="primary"
+						@click="changeWebServer(scope.row.name, 'start')"
+					>
+						Start
+					</el-button>
+					<el-button
+						size="small"
+						type="danger"
+						@click="changeWebServer(scope.row.name, 'stop')"
+					>
+						Stop
+					</el-button>
+					<el-button
+						size="small"
+						type="info"
+						@click="flushWebServer(scope.row.name)"
+					>
+						Flush
+					</el-button>
+					<el-button
+						size="small"
+						type="error"
+						@click="changePort(scope.row.name)"
+					>
+						ChangePort
+					</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
 	</div>
 </template>
 
@@ -34,15 +46,43 @@
 	export default {
 		data() {
 			return {
-				readPort: {
-					smtp: '',
-					pop3: '',
-				},
-				smtp: this.getWebServer('smtp'),
-				pop: this.getWebServer('pop3'),
+				serverInfo: [
+					{
+						name: 'smtp',
+						status: this.getWebServer('smtp').status,
+						port: this.getWebServer('smtp').port,
+					},
+					{
+						name: 'pop3',
+						status: this.getWebServer('pop3').status,
+						port: this.getWebServer('pop3').port,
+					},
+				],
 			};
 		},
 		methods: {
+			changePort(server) {
+				// 弹窗
+				this.$prompt('请输入新的端口号', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					inputPattern: /^\d{1,5}$/,
+					inputErrorMessage: '端口号为1-5位数字',
+				})
+					.then(({ value }) => {
+						this.$message({
+							type: 'success',
+							message: `你的端口号为: ${value}`,
+						});
+						this.changeWebServer(server, value);
+					})
+					.catch(() => {
+						this.$message({
+							type: 'info',
+							message: '取消输入',
+						});
+					});
+			},
 			getWebServer(server) {
 				const serverStore = useServerStore();
 				console.log('serverManage.Vue.getWebServer.server', server);

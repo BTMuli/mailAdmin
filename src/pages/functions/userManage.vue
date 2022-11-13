@@ -30,7 +30,6 @@
 				创建用户
 			</el-button>
 		</div>
-		<!-- todo 正式上线时，需要将这个表格的数据从本地获取改为从后端获取 -->
 		<el-table :data="usersInfo" border>
 			<el-table-column prop="username" label="用户名"></el-table-column>
 			<el-table-column prop="email" label="邮箱"></el-table-column>
