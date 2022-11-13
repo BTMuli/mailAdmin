@@ -25,6 +25,12 @@ const useAppStore = defineStore('appStore', {
 			}
 		},
 		/**
+		 * @description: Get user nickname
+		 */
+		getNickname() {
+			return this.nickname;
+		},
+		/**
 		 * @description: Set user's nickname
 		 * @param nickname new nickname
 		 */

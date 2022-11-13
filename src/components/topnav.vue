@@ -9,19 +9,52 @@
 			<!-- todo click 事件 -->
 			<img src="/src/static/svg/apps.svg" alt="功能" />
 			<!-- todo click 事件 -->
-			<img src="/src/static/svg/user.svg" alt="用户" />
+			<img
+				src="/src/static/svg/user.svg"
+				alt="用户"
+				@click="updateInfo()"
+			/>
+			{{ username }}
 		</div>
 	</div>
 </template>
 
 <script>
+	import useAppStore from '@/store/modules/app.js';
+
 	export default {
 		name: 'topNav',
 		data() {
-			return {};
+			return {
+				username: this.getUserNickname(),
+			};
 		},
 		methods: {
-			// todo
+			getUserNickname() {
+				const appStore = useAppStore();
+				return appStore.getNickname();
+			},
+			updateInfo() {
+				this.$prompt('请输入新的昵称', '修改昵称', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+				})
+					.then(({ value }) => {
+						const appStore = useAppStore();
+						appStore.updateInfo(value);
+						this.username = value;
+						this.$message({
+							type: 'success',
+							message: '修改成功!',
+						});
+					})
+					.catch(() => {
+						this.$message({
+							type: 'info',
+							message: '取消修改',
+						});
+					});
+			},
 		},
 	};
 </script>
