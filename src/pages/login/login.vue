@@ -47,8 +47,15 @@
 				const appStore = useAppStore();
 				let loginRes = await appStore.loginAuth(formData);
 				console.log('Login.Vue.loginRes', loginRes);
-				if (loginRes === true) {
+				if (loginRes.statusCode === 0) {
+					await appStore.setInfo(loginRes.data);
 					await this.$router.replace('/home');
+				} else {
+					// 弹窗提示
+					await this.$message({
+						message: loginRes.message,
+						type: 'error',
+					});
 				}
 			},
 			goRegister() {

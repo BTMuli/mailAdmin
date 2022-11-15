@@ -47,11 +47,7 @@ const useAppStore = defineStore('appStore', {
 			await console.log('loginAuth.data', data);
 			let postRes = await login(data);
 			await console.log('loginAuth.postRes', postRes);
-			if (postRes !== {}) {
-				await this.setInfo(postRes);
-				return true;
-			}
-			return false;
+			return postRes;
 		},
 		/**
 		 * @description: Register
