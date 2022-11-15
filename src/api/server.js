@@ -16,13 +16,17 @@ export function getStatus(server) {
 		return request({
 			method: 'get',
 			url: SMTP_PATH + '/status',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	} else if (server === 'pop3') {
 		return request({
 			method: 'get',
 			url: POP_PATH + '/status',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	}
 }
@@ -38,13 +42,17 @@ export function getPort(server) {
 		return request({
 			method: 'get',
 			url: SMTP_PATH + '/port',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	} else if (server === 'pop3') {
 		return request({
 			method: 'get',
 			url: POP_PATH + '/port',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	}
 }
@@ -60,13 +68,17 @@ export function startServer(server) {
 		return request({
 			method: 'get',
 			url: SMTP_PATH + '/start',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	} else if (server === 'pop3') {
 		return request({
 			method: 'get',
 			url: POP_PATH + '/start',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	}
 }
@@ -82,13 +94,17 @@ export function stopServer(server) {
 		return request({
 			method: 'get',
 			url: SMTP_PATH + '/stop',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	} else if (server === 'pop3') {
 		return request({
 			method: 'get',
 			url: POP_PATH + '/stop',
-			data: appStore.token,
+			data: {
+				token: appStore.token,
+			},
 		});
 	}
 }
