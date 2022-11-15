@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<div class="top_title">日志管理界面</div>
-		<button @click="getWebLog()">获取日志</button>
+		<div>
+			<el-button type="primary" @click="getWebLog()">获取日志</el-button>
+		</div>
 	</div>
 </template>
 
