@@ -17,6 +17,13 @@
 					<el-button type="primary" @click="webRegister()">
 						注册
 					</el-button>
+					<el-link
+						type="primary"
+						@click="goLogin()"
+						style="left: 160px"
+					>
+						登录
+					</el-link>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -47,8 +54,11 @@
 				await console.log('Register.Vue.registerRes', registerRes);
 				// todo 加个跳转弹窗
 				if (registerRes) {
-					await this.$router.replace('/login');
+					await this.$router.replace('/');
 				}
+			},
+			goLogin() {
+				this.$router.replace('/');
 			},
 		},
 	};

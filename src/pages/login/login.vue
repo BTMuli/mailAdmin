@@ -14,6 +14,13 @@
 					<el-button type="primary" @click="webLogin()">
 						登录
 					</el-button>
+					<el-link
+						type="primary"
+						@click="goRegister()"
+						style="left: 160px"
+					>
+						注册
+					</el-link>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -43,6 +50,9 @@
 				if (loginRes === true) {
 					await this.$router.replace('/home');
 				}
+			},
+			goRegister() {
+				this.$router.replace('/register');
 			},
 		},
 	};

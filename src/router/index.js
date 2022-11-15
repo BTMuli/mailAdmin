@@ -4,8 +4,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
 	// 首页
 	{
-		path: '/',
-		name: 'index',
+		path: '/register',
+		name: 'register',
 		component: () => import('@/pages/register/register.vue'),
 	},
 	// 主页
@@ -16,7 +16,7 @@ const routes = [
 	},
 	// 登录
 	{
-		path: '/login',
+		path: '/',
 		name: 'login',
 		component: () => import('@/pages/login/login.vue'),
 	},

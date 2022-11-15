@@ -47,8 +47,8 @@
 		components: { TopNav, Sidebar },
 		data() {
 			return {
-				loginPath: '/login',
-				registerPath: '/',
+				loginPath: '/',
+				registerPath: '/register',
 			};
 		},
 		methods: {},
