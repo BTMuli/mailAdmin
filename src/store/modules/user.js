@@ -5,7 +5,7 @@ import {
 	disableUser,
 	enableUser,
 	getUsers,
-	groupSend,
+	groupSend, updateInfo,
 } from '@/api/user.js';
 
 // The store to manage the user
@@ -37,7 +37,7 @@ const useUserStore = defineStore('userStore', {
 		 */
 		async flushUsersInfo() {
 			console.log('getUsersInfo');
-			let getRes = await getUsers();
+			let getRes = (await getUsers()).data;
 			console.log('getUsersInfo.getRes.users', getRes.users);
 			await this.setUsers(getRes.users);
 			console.log('userStore.userList', this.userList);
@@ -71,10 +71,13 @@ const useUserStore = defineStore('userStore', {
 		 * @todo need to verify the function
 		 */
 		async createUser(data) {
+			await console.log('createUser.data', data);
 			let sendMsg = {
 				username: data.username,
 				password: data.password,
+				nickname: data.nickname,
 			};
+			await console.log('createUser.sendMsg', sendMsg);
 			let getRes = await createUser(sendMsg);
 			await console.log(getRes);
 		},
@@ -92,6 +95,21 @@ const useUserStore = defineStore('userStore', {
 			let getRes = await groupSend(sendMsg);
 			await console.log(getRes);
 		},
+		/**
+		 * @description: Update user's info
+		 * @param data user's info
+		 * @return {Promise<void>} user info
+		 */
+		async updateUserInfo(data) {
+			await console.log('updateUser.data', data);
+			let sendData = {
+				username: data.username,
+				nickname: data.nickname,
+				password: data.password,
+			};
+			await console.log('updateUser.sendData', sendData);
+			await updateInfo(data);
+		}
 	},
 	persist: true,
 });

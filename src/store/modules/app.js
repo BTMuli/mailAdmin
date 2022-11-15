@@ -69,7 +69,12 @@ const useAppStore = defineStore('appStore', {
 		 */
 		async updateInfo(nickname) {
 			await console.log('updateInfo.nickname', nickname);
-			let postRes = await updateInfo(nickname);
+			let sendData = {
+				nickname: nickname,
+				username: this.username,
+				password: this.password,
+			};
+			let postRes = await updateInfo(sendData);
 			await console.log('updateInfo.postRes', postRes);
 			await this.setNickName(nickname);
 			return true;

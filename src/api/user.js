@@ -39,18 +39,20 @@ export function register(options) {
 
 /**
  * @description: Update user's nickname
- * @param nickname new nickname
  * @return {Promise<*|undefined>} user info
+ * @param data {{password: actions.password, nickname: *, username: actions.username}}
  */
-export function updateInfo(nickname) {
+export function updateInfo(data) {
 	const appStore = useAppStore();
 	return request({
 		method: 'post',
 		url: USER_PATH + '/update',
 		data: {
-			nickname: nickname,
+			nickname: data.nickname,
 			token: appStore.token,
-		},
+			username: data.username,
+			password: data.password,
+		}
 	});
 }
 
@@ -135,6 +137,7 @@ export function createUser(options) {
 			token: appStore.token,
 			username: options.username,
 			password: options.password,
+			nickname: options.nickname,
 		},
 	});
 }
@@ -149,7 +152,7 @@ export function groupSend(options) {
 	const appStore = useAppStore();
 	return request({
 		method: 'get',
-		uel: USER_PATH + '/group',
+		url: USER_PATH + '/group',
 		data: {
 			token: appStore.token,
 			users: options.users,
