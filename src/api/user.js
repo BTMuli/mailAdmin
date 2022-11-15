@@ -52,7 +52,7 @@ export function updateInfo(data) {
 			token: appStore.token,
 			username: data.username,
 			password: data.password,
-		}
+		},
 	});
 }
 
@@ -126,7 +126,6 @@ export function deleteUser(username) {
  * @description: Create user
  * @param options username, password
  * @return {Promise<*|undefined>} user info
- * @todo: add nickname
  */
 export function createUser(options) {
 	const appStore = useAppStore();

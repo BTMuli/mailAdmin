@@ -5,7 +5,8 @@ import {
 	disableUser,
 	enableUser,
 	getUsers,
-	groupSend, updateInfo,
+	groupSend,
+	updateInfo,
 } from '@/api/user.js';
 
 // The store to manage the user
@@ -109,7 +110,7 @@ const useUserStore = defineStore('userStore', {
 			};
 			await console.log('updateUser.sendData', sendData);
 			await updateInfo(data);
-		}
+		},
 	},
 	persist: true,
 });
