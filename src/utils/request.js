@@ -43,7 +43,7 @@ export async function request(options) {
 				await console.log(err);
 			});
 		await console.log('request.reqGet.getRes', getRes);
-		return getRes.data;
+		return getRes;
 	}
 
 	/**
@@ -69,7 +69,7 @@ export async function request(options) {
 				await console.log(err);
 			});
 		await console.log('request.reqPost.postRes', postRes);
-		return postRes.data;
+		return postRes;
 	}
 
 	/**
@@ -95,6 +95,6 @@ export async function request(options) {
 				await console.log(err);
 			});
 		await console.log('request.reqDel.delRes', delRes);
-		return delRes.data;
+		return delRes;
 	}
 }
