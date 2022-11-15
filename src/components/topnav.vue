@@ -5,16 +5,14 @@
 			<div class="title">邮件系统</div>
 		</div>
 		<div class="nav_right">
-      <el-card shadow="hover" @click="updateInfo()" class="right_card">{{ username }}</el-card>
+			<el-card shadow="hover" @click="updateInfo()" class="right_card">
+				{{ getUserNickname() }}
+			</el-card>
 			<img src="/src/static/svg/bell-ring.svg" alt="通知" />
 			<!-- todo click 事件 -->
 			<img src="/src/static/svg/apps.svg" alt="功能" />
 			<!-- todo click 事件 -->
-			<img
-				src="/src/static/svg/user.svg"
-				alt="用户"
-				@click="updateInfo()"
-			/>
+			<img src="/src/static/svg/user.svg" alt="用户" @click="logout()" />
 		</div>
 	</div>
 </template>
@@ -25,9 +23,7 @@
 	export default {
 		name: 'topNav',
 		data() {
-			return {
-				username: this.getUserNickname(),
-			};
+			return {};
 		},
 		methods: {
 			getUserNickname() {
@@ -51,6 +47,28 @@
 						this.$message({
 							type: 'info',
 							message: '取消修改',
+						});
+					});
+			},
+			logout() {
+				const appStore = useAppStore();
+				this.$confirm('确定退出登录吗?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning',
+				})
+					.then(async () => {
+						await appStore.logoutAuth();
+						this.$message({
+							type: 'success',
+							message: '退出成功!',
+						});
+						this.$router.push('/');
+					})
+					.catch(() => {
+						this.$message({
+							type: 'info',
+							message: '取消退出',
 						});
 					});
 			},
@@ -97,11 +115,10 @@
 		padding: 5px;
 	}
 
-
-  .right_card {
-    display: inline-block;
-    height: 40px;
-    width: auto;
-    right: 40px;
-  }
+	.right_card {
+		display: inline-block;
+		height: 40px;
+		width: auto;
+		right: 40px;
+	}
 </style>
