@@ -10,10 +10,10 @@ const POP_PATH = '/mail/pop3';
  * @param server smtp || pop3
  * @return {Promise<*|undefined>} server status
  */
-export function getStatus(server) {
+export async function getStatus(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
-		return request({
+		return await request({
 			method: 'get',
 			url: SMTP_PATH + '/status',
 			data: {
@@ -21,7 +21,7 @@ export function getStatus(server) {
 			},
 		});
 	} else if (server === 'pop3') {
-		return request({
+		return await request({
 			method: 'get',
 			url: POP_PATH + '/status',
 			data: {
@@ -36,10 +36,10 @@ export function getStatus(server) {
  * @param server smtp || pop3
  * @return {Promise<*|undefined>} server port
  */
-export function getPort(server) {
+export async function getPort(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
-		return request({
+		return await request({
 			method: 'get',
 			url: SMTP_PATH + '/port',
 			data: {
@@ -47,7 +47,7 @@ export function getPort(server) {
 			},
 		});
 	} else if (server === 'pop3') {
-		return request({
+		return await request({
 			method: 'get',
 			url: POP_PATH + '/port',
 			data: {
@@ -62,10 +62,10 @@ export function getPort(server) {
  * @param server smtp || pop3
  * @return {Promise<*|undefined>} server status
  */
-export function startServer(server) {
+export async function startServer(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
-		return request({
+		return await request({
 			method: 'get',
 			url: SMTP_PATH + '/start',
 			data: {
@@ -73,7 +73,7 @@ export function startServer(server) {
 			},
 		});
 	} else if (server === 'pop3') {
-		return request({
+		return await request({
 			method: 'get',
 			url: POP_PATH + '/start',
 			data: {
