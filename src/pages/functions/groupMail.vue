@@ -3,7 +3,18 @@
 		<div class="top_title">群发邮件</div>
 		<el-form ref="mailForm" size="large" v-model="mailForm">
 			<el-form-item required>
-				<el-input v-model="mailForm.users" placeholder="请输入收件人，以 ; 分隔" />
+				<el-select
+					v-model="mailForm.users"
+					placeholder="请选择收件人"
+					multiple
+				>
+					<el-option
+						v-for="item in getUsersList()"
+						:key="item.username"
+						:label="item.nickname"
+						:value="item.username"
+					/>
+				</el-select>
 			</el-form-item>
 			<el-form-item required>
 				<el-input v-model="mailForm.title" placeholder="请输入主题" />
@@ -22,6 +33,7 @@
 
 <script>
 	import useUserStore from '@/store/modules/user.js';
+	import { toRaw } from 'vue';
 
 	export default {
 		data() {
@@ -34,33 +46,34 @@
 			};
 		},
 		methods: {
-			async sendMail() {
+			sendMail() {
 				let formData = {
-					users: await this.getUsers(this.mailForm.users),
+					users: toRaw(this.mailForm.users),
 					title: this.mailForm.title,
 					content: this.mailForm.content,
 				};
-				await console.log(formData);
+				console.log(formData);
 				const userStore = useUserStore();
 				let sendData = {
 					users: formData.users,
-					content: await this.transMail(formData),
+					content: this.transMail(formData),
 				};
-				await console.log(sendData);
-				await userStore.sendGroupMail(sendData);
+				console.log(sendData);
+				userStore.sendGroupMail(sendData);
 			},
-			async transMail(mailData) {
+			transMail(mailData) {
 				let res = '';
-        // todo from 需要改成管理员邮箱
+				// todo from 需要改成管理员邮箱
 				res += 'from: example@mail.com\n';
 				res += 'to: ' + mailData.users + '\n';
 				res += 'subject: ' + mailData.title + '\n\n';
 				res += mailData.content;
 				return res;
 			},
-      async getUsers(users) {
-        return users.split(';');
-      },
+			getUsersList() {
+				const userStore = useUserStore();
+				return userStore.getUsersInfo();
+			},
 		},
 	};
 </script>

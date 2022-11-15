@@ -99,12 +99,12 @@
 					server,
 					target
 				);
-				let serverRes =await serverStore.changeServer(server, target);
+				let serverRes = await serverStore.changeServer(server, target);
 				await console.log(
 					'serverManage.Vue.changeWebServer.serverRes',
 					serverRes
 				);
-        await this.flushWebServer(server);
+				await this.flushWebServer(server);
 				return serverRes;
 			},
 		},
