@@ -79,6 +79,17 @@ const useAppStore = defineStore('appStore', {
 			await this.setNickName(nickname);
 			return true;
 		},
+		/**
+		 * @description: Logout
+		 * @return {Promise<boolean>} logout result
+		 */
+		async logoutAuth() {
+			await console.log('logoutAuth');
+			this.token = '';
+			this.nickname = '';
+			this.username = '';
+			return true;
+		},
 	},
 	persist: true,
 });

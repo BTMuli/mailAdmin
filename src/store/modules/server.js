@@ -13,11 +13,13 @@ const useServerStore = defineStore('serverStore', {
 		return {
 			// The SMTP server status && port
 			smtpServer: {
+				name: 'smtp',
 				status: '',
 				port: '',
 			},
 			// The POP3 server status && port
 			pop3Server: {
+				name: 'pop3',
 				status: '',
 				port: '',
 			},
@@ -25,17 +27,22 @@ const useServerStore = defineStore('serverStore', {
 	},
 	actions: {
 		/**
-		 * @description: Get SMTP server status && port
-		 * @param server smtp || pop3
-		 * @return {{port: string, status: string}} server status && port
+		 * @description: Set SMTP && POP3 server status && port
+		 * @param server
+		 * @return {{port: string, name: string, status: string}|({port: string, name: string, status: string}|{port: string, name: string, status: string})[]}
 		 */
 		getServerInfo(server) {
 			console.log('getServerInfo.server', server);
+			let res;
 			if (server === 'smtp') {
-				return this.smtpServer;
+				res = this.smtpServer;
 			} else if (server === 'pop3') {
-				return this.pop3Server;
+				res = this.pop3Server;
+			} else if (server === 'all') {
+				res = [this.smtpServer, this.pop3Server];
 			}
+			console.log('getServerInfo.res', res);
+			return res;
 		},
 		/**
 		 * @description: Set SMTP server status && port
@@ -66,11 +73,14 @@ const useServerStore = defineStore('serverStore', {
 		 */
 		async flushServerInfo(server) {
 			await console.log('flushServerInfo.server', server);
-			let resStatus = await getStatus(server);
-			await console.log('flushServerInfo.resStatus', resStatus);
-			let resPort = await getPort(server);
-			await console.log('flushServerInfo.resPort', resPort);
-			await this.setServerInfo(server, resStatus, resPort);
+			let resStatus = (await getStatus(server)).data;
+			await console.log(
+				'flushServerInfo.resStatus.running',
+				resStatus.running
+			);
+			let resPort = (await getPort(server)).data;
+			await console.log('flushServerInfo.resPort.port', resPort.port);
+			await this.setServerInfo(server, resStatus.running, resPort.port);
 		},
 		/**
 		 * @description: Change SMTP && POP3 server

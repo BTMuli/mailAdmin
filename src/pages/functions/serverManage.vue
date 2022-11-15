@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="top_title">服务管理界面</div>
-		<el-table :data="serverInfo" border>
+		<el-table :data="getServersInfo()" border>
 			<el-table-column prop="name" label="服务名称"></el-table-column>
 			<el-table-column prop="port" label="端口"></el-table-column>
 			<el-table-column prop="status" label="服务状态"></el-table-column>
@@ -45,20 +45,7 @@
 	import useServerStore from '@/store/modules/server.js';
 	export default {
 		data() {
-			return {
-				serverInfo: [
-					{
-						name: 'smtp',
-						status: this.getWebServer('smtp').status,
-						port: this.getWebServer('smtp').port,
-					},
-					{
-						name: 'pop3',
-						status: this.getWebServer('pop3').status,
-						port: this.getWebServer('pop3').port,
-					},
-				],
-			};
+			return {};
 		},
 		methods: {
 			changePort(server) {
@@ -83,38 +70,41 @@
 						});
 					});
 			},
-			getWebServer(server) {
+			getServersInfo() {
 				const serverStore = useServerStore();
-				console.log('serverManage.Vue.getWebServer.server', server);
-				let serverRes = serverStore.getServerInfo(server);
+				let serverRes = serverStore.getServerInfo('all');
 				console.log(
-					'serverManage.Vue.getWebServer.serverRes',
+					'serverManage.Vue.getServersInfo.serverRes',
 					serverRes
 				);
 				return serverRes;
 			},
-			flushWebServer(server) {
+			async flushWebServer(server) {
 				const serverStore = useServerStore();
-				console.log('serverManage.Vue.flushWebServer.server', server);
-				let serverRes = serverStore.flushServerInfo(server);
-				console.log(
+				await console.log(
+					'serverManage.Vue.flushWebServer.server',
+					server
+				);
+				let serverRes = await serverStore.flushServerInfo(server);
+				await console.log(
 					'serverManage.Vue.flushWebServer.serverRes',
 					serverRes
 				);
 				return serverRes;
 			},
-			changeWebServer(server, target) {
+			async changeWebServer(server, target) {
 				const serverStore = useServerStore();
-				console.log(
+				await console.log(
 					'serverManage.Vue.changeWebServer[server,target]',
 					server,
 					target
 				);
-				let serverRes = serverStore.changeServer(server, target);
-				console.log(
+				let serverRes =await serverStore.changeServer(server, target);
+				await console.log(
 					'serverManage.Vue.changeWebServer.serverRes',
 					serverRes
 				);
+        await this.flushWebServer(server);
 				return serverRes;
 			},
 		},
