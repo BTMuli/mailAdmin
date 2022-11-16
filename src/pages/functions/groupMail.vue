@@ -34,6 +34,7 @@
 <script>
 	import useUserStore from '@/store/modules/user.js';
 	import { toRaw } from 'vue';
+  import useAppStore from "@/store/modules/app.js";
 
 	export default {
 		data() {
@@ -47,7 +48,9 @@
 		},
 		methods: {
 			sendMail() {
-				let formData = {
+        let appStore = useAppStore();
+        let formData = {
+          from: appStore.username,
 					users: toRaw(this.mailForm.users),
 					title: this.mailForm.title,
 					content: this.mailForm.content,
@@ -63,8 +66,7 @@
 			},
 			transMail(mailData) {
 				let res = '';
-				// todo from 需要改成管理员邮箱
-				res += 'from: example@mail.com\n';
+				res += 'from: ' + mailData.from + '\n';
 				res += 'to: ' + mailData.users + '\n';
 				res += 'subject: ' + mailData.title + '\n\n';
 				res += mailData.content;

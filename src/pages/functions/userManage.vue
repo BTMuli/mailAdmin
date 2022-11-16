@@ -3,7 +3,7 @@
 		<div class="title_left">
 			<div class="left_title">用户列表</div>
 			<img
-				src="src/static/svg/refresh.svg"
+				src="@/static/svg/refresh.svg"
 				class="left_icon"
 				@click="flushUsersInfo()"
 				alt="刷新数据"

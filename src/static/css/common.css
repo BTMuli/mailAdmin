@@ -3,7 +3,7 @@
     width: 50vw;
     height: 100%;
     position: fixed;
-    background-image: url("src/static/image/login.png");
+    background-image: url("@/static/image/login.png");
 }
 
 /* 右侧容器视图 */
