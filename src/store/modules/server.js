@@ -89,7 +89,7 @@ const useServerStore = defineStore('serverStore', {
 		 * @return {Promise<void>} void
 		 */
 		async changeServer(serverType, target) {
-			if (serverType in ['smtp', 'pop3']) {
+			if (serverType==='smtp' || serverType==='pop3') {
 				if (target === 'start') {
 					await startServer(serverType);
 				} else if (target === 'stop') {

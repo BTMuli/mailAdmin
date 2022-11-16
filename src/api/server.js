@@ -88,7 +88,7 @@ export async function startServer(server) {
  * @param server smtp || pop3
  * @return {Promise<*|undefined>} server status
  */
-export function stopServer(server) {
+export async function stopServer(server) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
 		return request({
@@ -115,7 +115,7 @@ export function stopServer(server) {
  * @param port new port
  * @return {Promise<*|undefined>} server status
  */
-export function portChange(server, port) {
+export async function portChange(server, port) {
 	const appStore = useAppStore();
 	if (server === 'smtp') {
 		return request({
