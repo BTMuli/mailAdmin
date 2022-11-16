@@ -49,6 +49,7 @@
 				console.log('Login.Vue.loginRes', loginRes);
 				if (loginRes.statusCode === 0) {
 					await appStore.setInfo(loginRes.data);
+          await appStore.setInfo(formData)
 					await this.$router.replace('/home');
 				} else {
 					// 弹窗提示

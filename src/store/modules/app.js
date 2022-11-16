@@ -18,10 +18,12 @@ const useAppStore = defineStore('appStore', {
 		 */
 		setInfo(data) {
 			console.log('setInfo.data', data);
-			this.token = data.token;
-			this.nickname = data.nickname;
 			if (data.username) {
 				this.username = data.username;
+				this.password = data.password;
+			} else {
+				this.token = data.token;
+				this.nickname = data.nickname;
 			}
 		},
 		/**
