@@ -150,12 +150,14 @@ export function createUser(options) {
 export function groupSend(options) {
 	const appStore = useAppStore();
 	return request({
-		method: 'get',
+		method: 'post',
 		url: USER_PATH + '/group',
 		data: {
 			token: appStore.token,
-			users: options.users,
+			subject: options.title,
+			target: options.users,
 			content: options.content,
 		},
+		contentType: 'application/json',
 	});
 }

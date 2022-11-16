@@ -53,21 +53,39 @@ export async function request(options) {
 	 */
 	async function reqPost(options) {
 		let postRes;
-		await axios(
-			{
+		if(options.contentType){
+			await axios({
 				url: BASE_URL + options.url,
 				method: 'post',
-				data: qs.stringify(options.data),
-			},
-			{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-		)
-			.then(async res => {
-				await console.log('request.reqPost.res', res);
-				postRes = res.data;
+				data: options.data,
+				headers: {
+					'Content-Type': options.contentType,
+				},
 			})
-			.catch(async err => {
-				await console.log(err);
-			});
+				.then(async res => {
+					await console.log('request.reqPost.res', res);
+					postRes = res.data;
+				})
+				.catch(async err => {
+					await console.log(err);
+				});
+		} else {
+			await axios(
+				{
+					url: BASE_URL + options.url,
+					method: 'post',
+					data: qs.stringify(options.data),
+				},
+				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+			)
+				.then(async res => {
+					await console.log('request.reqPost.res', res);
+					postRes = res.data;
+				})
+				.catch(async err => {
+					await console.log(err);
+				});
+		}
 		await console.log('request.reqPost.postRes', postRes);
 		return postRes;
 	}

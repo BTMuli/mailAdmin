@@ -91,6 +91,7 @@ const useUserStore = defineStore('userStore', {
 		async sendGroupMail(data) {
 			let sendMsg = {
 				users: data.users,
+				title: data.title,
 				content: data.content,
 			};
 			let getRes = await groupSend(sendMsg);

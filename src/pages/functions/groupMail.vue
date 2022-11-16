@@ -59,18 +59,11 @@
 				const userStore = useUserStore();
 				let sendData = {
 					users: formData.users,
-					content: this.transMail(formData),
+          title: formData.title,
+					content: formData.content,
 				};
 				console.log(sendData);
 				userStore.sendGroupMail(sendData);
-			},
-			transMail(mailData) {
-				let res = '';
-				res += 'from: ' + mailData.from + '\n';
-				res += 'to: ' + mailData.users + '\n';
-				res += 'subject: ' + mailData.title + '\n\n';
-				res += mailData.content;
-				return res;
 			},
 			getUsersList() {
 				const userStore = useUserStore();
