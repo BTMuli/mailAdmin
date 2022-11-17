@@ -1,7 +1,13 @@
-# Vue 3 + Vite
+---
+Date: 2022-11-12
+Update: 2022-11-17
+Author: 目棃
+Description: 说明文档
+---
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> 本文档 [`Front-matter`](https://github.com/BTMuli/Mucli#FrontMatter) 由 [MuCli](https://github.com/BTMuli/Mucli) 自动生成于
+`2022-11-12 15:40:19`
 
-## Recommended IDE Setup
+## 前言
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+本项目为 计算机网络系统 实验——邮件客户端的 Web 管理端项目。
